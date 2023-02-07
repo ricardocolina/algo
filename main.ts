@@ -1,15 +1,15 @@
+let coord_x = 0
+let coord_y = 0
+let envio = ""
 input.onButtonPressed(Button.A, function () {
-    envio = "" + randint(0, 4) + randint(0, 4)
+    radio.setGroup(1)
+    coord_x = randint(0, 4)
+    coord_y = randint(0, 4)
+    led.plot(coord_x, coord_y)
+    envio = "" + coord_x + coord_y
     radio.sendString(envio)
     radio.setGroup(parseFloat(envio))
-    Escuchar = 1
 })
 radio.onReceivedString(function (receivedString) {
-    if (Escuchar == 1) {
-        basic.showString(receivedString)
-        Escuchar = 0
-    }
+    basic.showString(receivedString)
 })
-let Escuchar = 0
-let envio = ""
-radio.setGroup(1)
